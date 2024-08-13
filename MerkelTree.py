@@ -27,6 +27,7 @@ messageList = data['text'].tolist()
 timeList = data['time'].tolist()
 HashList = data['hashed_value'].tolist()
 
+
 # ***   ***     ***     ***     ***     ***     ***
 # ***
 # *** Our merkle tree implementation.
@@ -35,37 +36,177 @@ HashList = data['hashed_value'].tolist()
 
 
 # *** Hashing values of all three columns in the csv file.
-def hashing(messageList, timeList, HashList):
+def hashing(messageList, timeList, HashList,Opt):
+    # *** Hashes text and date, then store's the hash value in hashed_value column.
     for i, row in data.iterrows():
-        # *** Hashes text and date, then store's the hash value in hashed_value column.
-        if i == 0:
-            val1 = hashlib.sha256(json.dumps(messageList[i]).encode('UTF-8')).hexdigest()
-            curr_time = time.ctime()
-            #obj = time.gmtime(0)
-            #epoch = time.asctime(obj)
-            data.loc[i, 'time'] = curr_time
-            data.to_csv('Tweets_500.csv')
-            val2 = hashlib.sha256(json.dumps(timeList[i]).encode('UTF-8')).hexdigest()
-            join_hash = val1 + val2
-            double_hash = str(hashlib.sha256(json.dumps(join_hash).encode('UTF-8')).hexdigest())
-            data.loc[i, 'hashed_value'] = double_hash
-            data.to_csv('Tweets_500.csv')
+        if Opt == 1:
+            if i == 0:
+                val1 = hashlib.sha256(json.dumps(messageList[i]).encode('UTF-8')).hexdigest()
+                curr_time = time.ctime()
+                 #obj = time.gmtime(0)
+                #epoch = time.asctime(obj)
+                data.loc[i, 'time'] = curr_time
+                data.to_csv('Tweets_50.csv')
+                val2 = hashlib.sha256(json.dumps(timeList[i]).encode('UTF-8')).hexdigest()
+                join_hash = val1 + val2
+                double_hash = str(hashlib.sha256(json.dumps(join_hash).encode('UTF-8')).hexdigest())
+                data.loc[i, 'hashed_value'] = double_hash
+                data.to_csv('Tweets_50.csv')
         # *** Hashes text,date,concatenate the hashes of text, date and the previous hash.
         # *** Then calculates the hash of concatenated string, and store's the hash value in hashed_value column.
-        if i != 0:
-            val1 = hashlib.sha256(json.dumps(messageList[i]).encode('UTF-8')).hexdigest()
-            curr_time = time.ctime()
-            #obj = time.gmtime(0)
-            #epoch = time.asctime(obj)
-            data.loc[i, 'time'] = curr_time
-            data.to_csv('Tweets_500.csv')
-            val2 = hashlib.sha256(json.dumps(timeList[i]).encode('UTF-8')).hexdigest()
-            val3 = str(HashList[i - 1])
-            join_hash = val1 + val2
-            double_hash = str(hashlib.sha256(json.dumps(join_hash).encode('UTF-8')).hexdigest())
-            data.loc[i, 'hashed_value'] = double_hash
-            data.to_csv('Tweets_500.csv')
-
+            if i != 0:
+                val1 = hashlib.sha256(json.dumps(messageList[i]).encode('UTF-8')).hexdigest()
+                curr_time = time.ctime()
+                #obj = time.gmtime(0)
+                #epoch = time.asctime(obj)
+                data.loc[i, 'time'] = curr_time
+                data.to_csv('Tweets_50.csv')
+                val2 = hashlib.sha256(json.dumps(timeList[i]).encode('UTF-8')).hexdigest()
+                val3 = str(HashList[i - 1])
+                join_hash = val1 + val2
+                double_hash = str(hashlib.sha256(json.dumps(join_hash).encode('UTF-8')).hexdigest())
+                data.loc[i, 'hashed_value'] = double_hash
+                data.to_csv('Tweets_50.csv')
+        if Opt == 2:
+            if i == 0:
+                val1 = hashlib.sha256(json.dumps(messageList[i]).encode('UTF-8')).hexdigest()
+                curr_time = time.ctime()
+                # obj = time.gmtime(0)
+                # epoch = time.asctime(obj)
+                data.loc[i, 'time'] = curr_time
+                data.to_csv('Tweets_100.csv')
+                val2 = hashlib.sha256(json.dumps(timeList[i]).encode('UTF-8')).hexdigest()
+                join_hash = val1 + val2
+                double_hash = str(hashlib.sha256(json.dumps(join_hash).encode('UTF-8')).hexdigest())
+                data.loc[i, 'hashed_value'] = double_hash
+                data.to_csv('Tweets_100.csv')
+         # *** Hashes text,date,concatenate the hashes of text, date and the previous hash.
+         # *** Then calculates the hash of concatenated string, and store's the hash value in hashed_value column.
+            if i != 0:
+                val1 = hashlib.sha256(json.dumps(messageList[i]).encode('UTF-8')).hexdigest()
+                curr_time = time.ctime()
+                # obj = time.gmtime(0)
+                # epoch = time.asctime(obj)
+                data.loc[i, 'time'] = curr_time
+                data.to_csv('Tweets_100.csv')
+                val2 = hashlib.sha256(json.dumps(timeList[i]).encode('UTF-8')).hexdigest()
+                val3 = str(HashList[i - 1])
+                join_hash = val1 + val2
+                double_hash = str(hashlib.sha256(json.dumps(join_hash).encode('UTF-8')).hexdigest())
+                data.loc[i, 'hashed_value'] = double_hash
+                data.to_csv('Tweets_100.csv')
+        if Opt == 3:
+            if i == 0:
+                val1 = hashlib.sha256(json.dumps(messageList[i]).encode('UTF-8')).hexdigest()
+                curr_time = time.ctime()
+                # obj = time.gmtime(0)
+                # epoch = time.asctime(obj)
+                data.loc[i, 'time'] = curr_time
+                data.to_csv('Tweets_200.csv')
+                val2 = hashlib.sha256(json.dumps(timeList[i]).encode('UTF-8')).hexdigest()
+                join_hash = val1 + val2
+                double_hash = str(hashlib.sha256(json.dumps(join_hash).encode('UTF-8')).hexdigest())
+                data.loc[i, 'hashed_value'] = double_hash
+                data.to_csv('Tweets_200.csv')
+         # *** Hashes text,date,concatenate the hashes of text, date and the previous hash.
+         # *** Then calculates the hash of concatenated string, and store's the hash value in hashed_value column.
+            if i != 0:
+                val1 = hashlib.sha256(json.dumps(messageList[i]).encode('UTF-8')).hexdigest()
+                curr_time = time.ctime()
+                # obj = time.gmtime(0)
+                # epoch = time.asctime(obj)
+                data.loc[i, 'time'] = curr_time
+                data.to_csv('Tweets_200.csv')
+                val2 = hashlib.sha256(json.dumps(timeList[i]).encode('UTF-8')).hexdigest()
+                val3 = str(HashList[i - 1])
+                join_hash = val1 + val2
+                double_hash = str(hashlib.sha256(json.dumps(join_hash).encode('UTF-8')).hexdigest())
+                data.loc[i, 'hashed_value'] = double_hash
+                data.to_csv('Tweets_200.csv')
+        if Opt == 4:
+            if i == 0:
+                val1 = hashlib.sha256(json.dumps(messageList[i]).encode('UTF-8')).hexdigest()
+                curr_time = time.ctime()
+                # obj = time.gmtime(0)
+                # epoch = time.asctime(obj)
+                data.loc[i, 'time'] = curr_time
+                data.to_csv('Tweets_500.csv')
+                val2 = hashlib.sha256(json.dumps(timeList[i]).encode('UTF-8')).hexdigest()
+                join_hash = val1 + val2
+                double_hash = str(hashlib.sha256(json.dumps(join_hash).encode('UTF-8')).hexdigest())
+                data.loc[i, 'hashed_value'] = double_hash
+                data.to_csv('Tweets_500.csv')
+                # *** Hashes text,date,concatenate the hashes of text, date and the previous hash.
+                # *** Then calculates the hash of concatenated string, and store's the hash value in hashed_value column.
+            if i != 0:
+                val1 = hashlib.sha256(json.dumps(messageList[i]).encode('UTF-8')).hexdigest()
+                curr_time = time.ctime()
+                # obj = time.gmtime(0)
+                # epoch = time.asctime(obj)
+                data.loc[i, 'time'] = curr_time
+                data.to_csv('Tweets_500.csv')
+                val2 = hashlib.sha256(json.dumps(timeList[i]).encode('UTF-8')).hexdigest()
+                val3 = str(HashList[i - 1])
+                join_hash = val1 + val2
+                double_hash = str(hashlib.sha256(json.dumps(join_hash).encode('UTF-8')).hexdigest())
+                data.loc[i, 'hashed_value'] = double_hash
+                data.to_csv('Tweets_500.csv')
+        if Opt == 5:
+            if i == 0:
+                val1 = hashlib.sha256(json.dumps(messageList[i]).encode('UTF-8')).hexdigest()
+                curr_time = time.ctime()
+                # obj = time.gmtime(0)
+                # epoch = time.asctime(obj)
+                data.loc[i, 'time'] = curr_time
+                data.to_csv('Tweets_1000.csv')
+                val2 = hashlib.sha256(json.dumps(timeList[i]).encode('UTF-8')).hexdigest()
+                join_hash = val1 + val2
+                double_hash = str(hashlib.sha256(json.dumps(join_hash).encode('UTF-8')).hexdigest())
+                data.loc[i, 'hashed_value'] = double_hash
+                data.to_csv('Tweets_1000.csv')
+                # *** Hashes text,date,concatenate the hashes of text, date and the previous hash.
+                # *** Then calculates the hash of concatenated string, and store's the hash value in hashed_value column.
+            if i != 0:
+                val1 = hashlib.sha256(json.dumps(messageList[i]).encode('UTF-8')).hexdigest()
+                curr_time = time.ctime()
+                # obj = time.gmtime(0)
+                # epoch = time.asctime(obj)
+                data.loc[i, 'time'] = curr_time
+                data.to_csv('Tweets_1000.csv')
+                val2 = hashlib.sha256(json.dumps(timeList[i]).encode('UTF-8')).hexdigest()
+                val3 = str(HashList[i - 1])
+                join_hash = val1 + val2
+                double_hash = str(hashlib.sha256(json.dumps(join_hash).encode('UTF-8')).hexdigest())
+                data.loc[i, 'hashed_value'] = double_hash
+                data.to_csv('Tweets_1000.csv')
+        if Opt == 6:
+            if i == 0:
+                val1 = hashlib.sha256(json.dumps(messageList[i]).encode('UTF-8')).hexdigest()
+                curr_time = time.ctime()
+                # obj = time.gmtime(0)
+                # epoch = time.asctime(obj)
+                data.loc[i, 'time'] = curr_time
+                data.to_csv('Tweets_5000.csv')
+                val2 = hashlib.sha256(json.dumps(timeList[i]).encode('UTF-8')).hexdigest()
+                join_hash = val1 + val2
+                double_hash = str(hashlib.sha256(json.dumps(join_hash).encode('UTF-8')).hexdigest())
+                data.loc[i, 'hashed_value'] = double_hash
+                data.to_csv('Tweets_5000.csv')
+                # *** Hashes text,date,concatenate the hashes of text, date and the previous hash.
+                # *** Then calculates the hash of concatenated string, and store's the hash value in hashed_value column.
+            if i != 0:
+                val1 = hashlib.sha256(json.dumps(messageList[i]).encode('UTF-8')).hexdigest()
+                curr_time = time.ctime()
+                # obj = time.gmtime(0)
+                # epoch = time.asctime(obj)
+                data.loc[i, 'time'] = curr_time
+                data.to_csv('Tweets_5000.csv')
+                val2 = hashlib.sha256(json.dumps(timeList[i]).encode('UTF-8')).hexdigest()
+                val3 = str(HashList[i - 1])
+                join_hash = val1 + val2
+                double_hash = str(hashlib.sha256(json.dumps(join_hash).encode('UTF-8')).hexdigest())
+                data.loc[i, 'hashed_value'] = double_hash
+                data.to_csv('Tweets_5000.csv')
     return HashList
 
 
@@ -105,9 +246,9 @@ def validation(m_root,HashList):
         print('\033[95m' + "Merkle Tree recalculated root:" + color.END, RM)
     return RM
 
-def My_Algo(messageList, timeList, HashList):
+def My_Algo(messageList, timeList, HashList, Opt):
     start_time = time.time()
-    h = hashing(messageList, timeList, HashList)
+    h = hashing(messageList, timeList, HashList, Opt)
     m = merkleTree(h)
     print(color.BOLD + '\033[96m ' + "Total execution of Proposed MT: --- %s seconds ---" % (time.time() - start_time) + color.END)
     print(color.BOLD + '\033[94m' + "Merkle tree root: " + color.END, m)
@@ -145,10 +286,18 @@ def Python_MT (HashList_copy):
 
 
 def main():
+    print('Please choose a value to begin hashing:')
+    print('Choose 1 for for dataset of size 50')
+    print('Choose 2 for for dataset of size 100')
+    print('Choose 3 for for dataset of size 200')
+    print('Choose 4 for for dataset of size 500')
+    print('Choose 5 for for dataset of size 1000')
+    print('Choose 6 for for dataset of size 5000')
+    Opt = input("Enter a value: \n")
     print(color.BOLD + '\033[93m' + "*** ----------------------------------------- ***" + color.END)
     print(color.BOLD + '\033[94m' + "*** Our merkle tree implementation. ***" + color.END)
     print(color.BOLD + '\033[93m' + "*** ----------------------------------------- ***" + color.END)
-    My_Algo(messageList, timeList, HashList)
+    My_Algo(messageList, timeList, HashList, Opt)
     print(color.BOLD + '\033[93m' + "*** ----------------------------------------- ***" + color.END)
     print(color.BOLD + '\033[94m' + "*** Using Python's Builtin Merkle tree function. ***" + color.END)
     print(color.BOLD + '\033[93m' + "*** ----------------------------------------- ***" + color.END)
